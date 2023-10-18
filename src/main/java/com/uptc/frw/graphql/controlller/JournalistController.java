@@ -1,15 +1,13 @@
 package com.uptc.frw.graphql.controlller;
 
 import com.uptc.frw.graphql.jpa.entity.Journalist;
-import com.uptc.frw.graphql.repository.JournalistRepository;
+import com.uptc.frw.graphql.jpa.repository.JournalistRepository;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class JournalistController {

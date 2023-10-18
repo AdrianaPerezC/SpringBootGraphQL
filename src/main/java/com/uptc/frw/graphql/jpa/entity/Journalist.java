@@ -1,11 +1,7 @@
 package com.uptc.frw.graphql.jpa.entity;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 
-import java.util.Date;
 import java.util.List;
 
 
@@ -13,9 +9,9 @@ import java.util.List;
 @Table(name="PERIODISTAS")
 public class Journalist {
     @Id
-    @Column(name="CODIGO_PERIODISTA")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name="CODIGO_PERIODISTA")
+    private Long idJournalist;
     @Column(name="NOMBRE")
     private String name;
     @Column(name="DIRECCION")
@@ -27,6 +23,9 @@ public class Journalist {
    /* @OneToMany(mappedBy = "journalist")
     private List<JournalistNews> journalistNews;
 */
+
+    @OneToMany(mappedBy = "codigoPeriodista")
+    private List<News> newsList;
 
     public Journalist() {
     }
@@ -46,12 +45,12 @@ public class Journalist {
         this.journalistNews = journalistNews;
     }*/
 
-    public Long getId() {
-        return id;
+    public Long getIdJournalist() {
+        return idJournalist;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdJournalist(Long id) {
+        this.idJournalist = id;
     }
 
     public String getName() {
@@ -89,7 +88,7 @@ public class Journalist {
     @Override
     public String toString() {
         return "Journalist{" +
-                "id=" + id +
+                "id=" + idJournalist +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +

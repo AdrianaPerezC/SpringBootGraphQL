@@ -1,0 +1,16 @@
+type News{
+    id: Int,
+    fecha: String!,
+    address: String!,
+    phone: String!,
+    numNews: Int!
+}
+
+type QueryNews{
+    getAllNews:[News]
+    getNewsById(id:Int):News
+}
+
+type MutationNews{
+    createNews(fecha:String!, address:String!, phone:String!, numNews:Int!) : News!
+}
