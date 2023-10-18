@@ -1,8 +1,7 @@
 package com.uptc.frw.graphql.jpa.entity;
 
 import javax.persistence.*;
-import java.sql.Date;
-
+import java.util.Date;
 @Entity
 @Table(name="PERSONA_IMPLICADA")
 public class PersonInvolved {
@@ -67,5 +66,6 @@ public class PersonInvolved {
                 ", qualityInvolved='" + qualityInvolved + '\'' +
                 '}';
     }
+}
 
 }
