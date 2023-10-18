@@ -3,11 +3,14 @@ package com.uptc.frw.graphql.jpa.key;
 import com.uptc.frw.graphql.jpa.entity.NewsAgency;
 import com.uptc.frw.graphql.jpa.entity.News;
 
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.io.Serializable;
 
 public class NewsAgencyNewsKey implements Serializable {
-private NewsAgency newsAgency;
-private News news;
+    private NewsAgency newsAgency;
+    private News news;
 
     public NewsAgencyNewsKey() {
     }
@@ -31,5 +34,13 @@ private News news;
 
     public void setNews(News news) {
         this.news = news;
+    }
+
+    @Override
+    public String toString() {
+        return "NewsAgencyNewsKey{" +
+                "newsAgency=" + newsAgency +
+                ", news=" + news +
+                '}';
     }
 }

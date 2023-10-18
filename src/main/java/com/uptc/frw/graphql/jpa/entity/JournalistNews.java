@@ -1,16 +1,22 @@
 package com.uptc.frw.graphql.jpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.uptc.frw.graphql.jpa.key.JournalistNewsKey;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "PERIODISTAS_CUBREN_NOTICIAS")
+@IdClass(JournalistNewsKey.class)
 public class JournalistNews {
     @Id
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "CODIGO_PERIODISTA",nullable = false)
     private Journalist journalist;
 
     @Id
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "CODIGO_NOTICIA",nullable = false)
     private News news;

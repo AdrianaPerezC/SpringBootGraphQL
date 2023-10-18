@@ -24,9 +24,10 @@ public class Journalist {
     private String phone;
     @Column(name="NUMERO_NOTICIAS")
     private int numberNews;
+    @JsonIgnore
     @OneToMany(mappedBy = "journalist")
     private List<JournalistNews> journalistNews;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "journalist")
     private List<JournalistInterviewPerson> journalistInterviewPeople;
 

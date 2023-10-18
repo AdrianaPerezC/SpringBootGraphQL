@@ -1,5 +1,6 @@
 package com.uptc.frw.graphql.jpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.uptc.frw.graphql.jpa.key.JournalistInterviewPersonKey;
 
 import javax.persistence.*;
@@ -9,15 +10,18 @@ import javax.persistence.*;
 @IdClass(JournalistInterviewPersonKey.class)
 public class JournalistInterviewPerson {
     @Id
-    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @JsonIgnore
+    @ManyToOne
     @JoinColumn(name="CODIGO_PERIODISTA",nullable = false)
     private Journalist journalist;
     @Id
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @JsonIgnore
+    @ManyToOne
     @JoinColumn(name="CODIGO_IMPLICADO",nullable = false)
     private PersonInvolved involved;
     @Id
-    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @JsonIgnore
+    @ManyToOne
     @JoinColumn(name="CODIGO_NOTICIA",nullable = false)
     private News news;
 
@@ -26,7 +30,7 @@ public class JournalistInterviewPerson {
 
     public JournalistInterviewPerson(Journalist journalist, PersonInvolved involved, News news) {
         this.journalist = journalist;
-      //  this.involved = involved;
+        this.involved = involved;
         this.news = news;
     }
 
@@ -58,7 +62,7 @@ public class JournalistInterviewPerson {
     public String toString() {
         return "JournalistInterviewPerson{" +
                 "codigo_periodista=" + journalist +
-              //  ", codigo_implicado=" +  involved+
+                ", codigo_implicado=" +  involved+
                 ", codigo_noticia=" + news +
                 '}';
     }

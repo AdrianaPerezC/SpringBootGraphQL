@@ -1,5 +1,7 @@
 package com.uptc.frw.graphql.jpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Time;
@@ -9,10 +11,10 @@ import java.util.List;
 @Table(name="NOTICIAS")
 public class News {
 
-    @Id
+   @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CODIGO_NOTICIA")
-    private Long idNew;
+    private Long id;
     @Column(name = "FECHA")
     private Date dateNew;
 
@@ -27,11 +29,19 @@ public class News {
 
     /*Se agrega la variable CODIGONOTICIAREFERENCIA
     que se mapea a la clave externa de la misma tabla News*/
+    @JsonIgnore
+    @OneToMany
+    @JoinColumn(name="CODIGO_NOTICIA_REFERENCIA", referencedColumnName="CODIGO_NOTICIA")
+    private List<News> news;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "news")
     private List<JournalistNews> journalistNews;
+    @JsonIgnore
     @OneToMany(mappedBy = "news")
     private List<NewsAgencyNews> newsAgencyNewsList;
+
+    @JsonIgnore
     @OneToMany(mappedBy = "news")
     private List<JournalistInterviewPerson> journalistInterviewPeople;
 
@@ -45,14 +55,13 @@ public class News {
         this.text = text;
     }
 
-    public List<NewsAgencyNews> getNewsAgencyNewsList() {
-        return newsAgencyNewsList;
+    public List<News> getNews() {
+        return news;
     }
 
-    public void setNewsAgencyNewsList(List<NewsAgencyNews> newsAgencyNewsList) {
-        this.newsAgencyNewsList = newsAgencyNewsList;
+    public void setNews(List<News> news) {
+        this.news = news;
     }
-
     public List<JournalistInterviewPerson> getJournalistInterviewPeople() {
         return journalistInterviewPeople;
     }
@@ -60,7 +69,13 @@ public class News {
     public void setJournalistInterviewPeople(List<JournalistInterviewPerson> journalistInterviewPeople) {
         this.journalistInterviewPeople = journalistInterviewPeople;
     }
+    public List<NewsAgencyNews> getNewsAgencyNewsList() {
+        return newsAgencyNewsList;
+    }
 
+    public void setNewsAgencyNewsList(List<NewsAgencyNews> newsAgencyNewsList) {
+        this.newsAgencyNewsList = newsAgencyNewsList;
+    }
     public List<JournalistNews> getJournalistNews() {
         return journalistNews;
     }
@@ -69,12 +84,12 @@ public class News {
         this.journalistNews = journalistNews;
     }
 
-    public Long getIdNew() {
-        return idNew;
+    public Long getId() {
+        return id;
     }
 
-    public void setIdNew(Long idNew) {
-        this.idNew = idNew;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Date getDateNew() {
@@ -112,7 +127,7 @@ public class News {
     @Override
     public String toString() {
         return "News{" +
-                "idNew=" + idNew +
+                "idNew=" + id +
                 ", dateNew=" + dateNew +
                 ", timeNew=" + timeNew +
                 ", headline='" + headline + '\'' +

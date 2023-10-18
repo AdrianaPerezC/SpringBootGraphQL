@@ -1,5 +1,7 @@
 package com.uptc.frw.graphql.jpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +19,7 @@ public class PersonInvolved {
     private Date birthday;
     @Column(name = "CALIDAD_IMPLICADO")
     private String qualityInvolved;
+    @JsonIgnore
     @OneToMany(mappedBy = "involved")
     private List<JournalistInterviewPerson> journalistInterviewPeople;
 
@@ -78,4 +81,5 @@ public class PersonInvolved {
                 ", qualityInvolved='" + qualityInvolved + '\'' +
                 '}';
     }
+
 }

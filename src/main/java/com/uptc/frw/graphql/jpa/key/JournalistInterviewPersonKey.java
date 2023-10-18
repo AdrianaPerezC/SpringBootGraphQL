@@ -8,16 +8,15 @@ import java.io.Serializable;
 
 public class JournalistInterviewPersonKey implements Serializable {
     private News news;
-   // private PersonInvolved personInvolved;
+    private PersonInvolved involved;
     private Journalist journalist;
 
     public JournalistInterviewPersonKey() {
     }
 
-    public JournalistInterviewPersonKey(News news,// PersonInvolved personInvolved,
-                                        Journalist journalist) {
+    public JournalistInterviewPersonKey(News news, PersonInvolved involved,Journalist journalist) {
         this.news = news;
-       // this.personInvolved = personInvolved;
+        this.involved = involved;
         this.journalist = journalist;
     }
 
@@ -29,13 +28,13 @@ public class JournalistInterviewPersonKey implements Serializable {
         this.news = news;
     }
 
-    /*public PersonInvolved getPersonInvolved() {
-        return personInvolved;
+    public PersonInvolved getInvolved() {
+        return involved;
     }
 
-    public void setPersonInvolved(PersonInvolved personInvolved) {
-        this.personInvolved = personInvolved;
-    }*/
+    public void setInvolved(PersonInvolved involved) {
+        this.involved = involved;
+    }
 
     public Journalist getJournalist() {
         return journalist;

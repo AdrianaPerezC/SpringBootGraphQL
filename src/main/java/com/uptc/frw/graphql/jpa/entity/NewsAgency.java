@@ -1,32 +1,29 @@
 package com.uptc.frw.graphql.jpa.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jdk.jfr.Enabled;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import java.time.Year;
+import javax.persistence.*;
 import java.util.List;
 
-@Enabled
+@Entity
 @Table(name = "AGENCIA_NOTICIAS")
 public class NewsAgency {
- @Id
- @Column(name = "CODIGO_AGENCIA")
-private Long  id;
-@Column(name = "NOMBRE")
-private String name;
-@Column(name = "ANIO_CREACION")
-private Year year;
-
-@OneToMany(mappedBy = "newsAgency")
-private List<NewsAgencyNews> newsAgencyNewsList;
+    @Id
+    @Column(name = "CODIGO_AGENCIA")
+    private Long  id;
+    @Column(name = "NOMBRE")
+    private String name;
+    @Column(name = "ANIO_CREACION")
+    private int year;
+    @JsonIgnore
+    @OneToMany(mappedBy = "newsAgency")
+    private List<NewsAgencyNews> newsAgencyNewsList;
 
     public NewsAgency() {
     }
 
-    public NewsAgency(String name, Year year) {
+    public NewsAgency(String name, int year) {
         this.name = name;
         this.year = year;
     }
@@ -47,20 +44,6 @@ private List<NewsAgencyNews> newsAgencyNewsList;
         this.name = name;
     }
 
-    public Year getYear() {
-        return year;
-    }
-
-    public void setYear(Year year) {
-        this.year = year;
-    }
-    public List<NewsAgencyNews> getNewsAgencyNewsList() {
-        return newsAgencyNewsList;
-    }
-
-    public void setNewsAgencyNewsList(List<NewsAgencyNews> newsAgencyNewsList) {
-        this.newsAgencyNewsList = newsAgencyNewsList;
-    }
 
     @Override
     public String toString() {
@@ -70,6 +53,4 @@ private List<NewsAgencyNews> newsAgencyNewsList;
                 ", ano_creacion=" + year +
                 '}';
     }
-
-
 }
