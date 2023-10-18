@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-//@Service
+@Service
 public class NewsService {
-/*
+
     @Autowired
     private NewsRepository newsRepository;
 
@@ -25,13 +25,14 @@ public class NewsService {
         return newsRepository.save(news);
     }
 
-    public News updateNews(Long id, String headLine){
+    public News updateNewsHeadline(Long id, String headLine){
         News news = getNewsById(id);
         news.setHeadline(headLine);
         return newsRepository.save(news);
     }
 
-    public void deleteNews(Long id){
+    public String  deleteNews(Long id){
         newsRepository.deleteById(id);
-    }*/
+        return "La noticia con Id: "+id+" ha sido eliminada";
+    }
 }

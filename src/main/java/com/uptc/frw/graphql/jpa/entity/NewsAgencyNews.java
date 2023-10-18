@@ -14,12 +14,12 @@ public class NewsAgencyNews {
     private Time hour;
     @Id
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name="CODIGO_AGENCIA_NOTICIAS",nullable = false)
     private NewsAgency newsAgency;
     @Id
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name="CODIGO_NOTICIA", nullable = false)
     private News news;
 

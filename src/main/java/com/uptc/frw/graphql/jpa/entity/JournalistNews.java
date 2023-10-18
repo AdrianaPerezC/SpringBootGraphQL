@@ -11,13 +11,13 @@ import javax.persistence.*;
 public class JournalistNews {
     @Id
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "CODIGO_PERIODISTA",nullable = false)
     private Journalist journalist;
 
     @Id
     @JsonIgnore
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "CODIGO_NOTICIA",nullable = false)
     private News news;
 

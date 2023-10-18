@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-//@Service
+@Service
 public class JournalistNewsService {
-/*
+
     @Autowired
     private JournalistNewsRepository journalistNewRepository;
 
@@ -22,8 +22,6 @@ public class JournalistNewsService {
     }
 
     public void deleteJournalistNews(Long idJournalist, Long idNews){
-        //Consultar eliminar por los 2 parametrosjournalistNewRepository.deleteById();
+      //  Consultar eliminar por los 2 parametrosjournalistNewRepository.deleteById();
     }
-
-*/
 }
