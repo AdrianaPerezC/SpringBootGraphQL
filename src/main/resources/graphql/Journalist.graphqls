@@ -1,0 +1,21 @@
+type Journalist{
+    id: Int,
+    name: String!,
+    address: String!,
+    phone: String!,
+    numNews: Int!
+}
+
+type Query{
+    allJournalists:[Journalist]
+    getJournalistById(id:Int):Journalist
+   ## countJournalist:Int!
+}
+
+type Mutation {
+    addJournalist(name: String!, address: String!, phone: String!, numNews: Int!) : Journalist!
+
+}
+
+
+

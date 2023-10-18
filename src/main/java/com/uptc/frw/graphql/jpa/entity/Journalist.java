@@ -14,6 +14,7 @@ import java.util.List;
 public class Journalist {
     @Id
     @Column(name="CODIGO_PERIODISTA")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name="NOMBRE")
     private String name;
@@ -23,6 +24,9 @@ public class Journalist {
     private String phone;
     @Column(name="NUMERO_NOTICIAS")
     private int numberNews;
+   /* @OneToMany(mappedBy = "journalist")
+    private List<JournalistNews> journalistNews;
+*/
 
     public Journalist() {
     }
@@ -33,6 +37,14 @@ public class Journalist {
         this.phone = phone;
         this.numberNews = numberNews;
     }
+
+    /*public List<JournalistNews> getJournalistNews() {
+        return journalistNews;
+    }
+
+    public void setJournalistNews(List<JournalistNews> journalistNews) {
+        this.journalistNews = journalistNews;
+    }*/
 
     public Long getId() {
         return id;
@@ -84,4 +96,5 @@ public class Journalist {
                 ", numberNews=" + numberNews +
                 '}';
     }
+
 }
