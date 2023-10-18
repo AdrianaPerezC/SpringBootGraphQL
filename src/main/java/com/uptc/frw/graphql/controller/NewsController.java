@@ -11,9 +11,9 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 
-@Controller
+//@Controller
 public class NewsController {
-
+/*
     private NewsRepository newsRepository;
 
     public NewsController(NewsRepository newsRepository){

@@ -3,18 +3,19 @@ type Journalist{
     name: String!,
     address: String!,
     phone: String!,
-    numNews: Int!
+    numberNews: Int
 }
 
 type Query{
     allJournalists:[Journalist]
-    getJournalistById(id:Int):Journalist
+    getJournalistById(id:Int!):Journalist
    ## countJournalist:Int!
 }
 
 type Mutation {
-    addJournalist(name: String!, address: String!, phone: String!, numNews: Int!) : Journalist!
-
+    addJournalist(name: String!, address: String!, phone: String!, numberNews: Int) : Journalist
+    updateNameJournalistById(id:Int!,name: String!):Journalist
+    deleteJournalistById(id:Int!):String
 }
 
 

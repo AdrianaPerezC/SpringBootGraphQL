@@ -4,58 +4,72 @@ import jdk.jfr.Enabled;
 
 import javax.persistence.Column;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.time.Year;
+import java.util.List;
+
 @Enabled
 @Table(name = "AGENCIA_NOTICIAS")
 public class NewsAgency {
  @Id
- @Column(name = "codigo_agencia")
-private int  agencia_noticia;
-@Column(name = "nombre")
-private String nombre;
-@Column(name = "anio_creacion")
-private Year ano_creacion;
+ @Column(name = "CODIGO_AGENCIA")
+private Long  id;
+@Column(name = "NOMBRE")
+private String name;
+@Column(name = "ANIO_CREACION")
+private Year year;
+
+@OneToMany(mappedBy = "newsAgency")
+private List<NewsAgencyNews> newsAgencyNewsList;
 
     public NewsAgency() {
     }
 
-    public NewsAgency(int agencia_noticia, String nombre, Year ano_creacion) {
-        this.agencia_noticia = agencia_noticia;
-        this.nombre = nombre;
-        this.ano_creacion = ano_creacion;
+    public NewsAgency(String name, Year year) {
+        this.name = name;
+        this.year = year;
     }
 
-    public int getAgencia_noticia() {
-        return agencia_noticia;
+    public Long getId() {
+        return id;
     }
 
-    public void setAgencia_noticia(int agencia_noticia) {
-        this.agencia_noticia = agencia_noticia;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Year getAno_creacion() {
-        return ano_creacion;
+    public Year getYear() {
+        return year;
     }
 
-    public void setAno_creacion(Year ano_creacion) {
-        this.ano_creacion = ano_creacion;
+    public void setYear(Year year) {
+        this.year = year;
+    }
+    public List<NewsAgencyNews> getNewsAgencyNewsList() {
+        return newsAgencyNewsList;
+    }
+
+    public void setNewsAgencyNewsList(List<NewsAgencyNews> newsAgencyNewsList) {
+        this.newsAgencyNewsList = newsAgencyNewsList;
     }
 
     @Override
     public String toString() {
         return "NewsAgency{" +
-                "agencia_noticia=" + agencia_noticia +
-                ", nombre='" + nombre + '\'' +
-                ", ano_creacion=" + ano_creacion +
+                "agencia_noticia=" + id +
+                ", nombre='" + name + '\'' +
+                ", ano_creacion=" + year +
                 '}';
     }
+
+
 }

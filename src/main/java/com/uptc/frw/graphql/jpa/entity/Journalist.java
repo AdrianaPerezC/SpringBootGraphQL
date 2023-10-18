@@ -24,12 +24,11 @@ public class Journalist {
     private String phone;
     @Column(name="NUMERO_NOTICIAS")
     private int numberNews;
-   /* @OneToMany(mappedBy = "journalist")
+    @OneToMany(mappedBy = "journalist")
     private List<JournalistNews> journalistNews;
-*/
 
-    @OneToMany(mappedBy = "codigoPeriodista")
-    private List<News> newsList;
+    @OneToMany(mappedBy = "journalist")
+    private List<JournalistInterviewPerson> journalistInterviewPeople;
 
     public Journalist() {
     }
@@ -41,13 +40,21 @@ public class Journalist {
         this.numberNews = numberNews;
     }
 
-    /*public List<JournalistNews> getJournalistNews() {
+    public List<JournalistNews> getJournalistNews() {
         return journalistNews;
     }
 
     public void setJournalistNews(List<JournalistNews> journalistNews) {
         this.journalistNews = journalistNews;
-    }*/
+    }
+
+    public List<JournalistInterviewPerson> getJournalistInterviewPeople() {
+        return journalistInterviewPeople;
+    }
+
+    public void setJournalistInterviewPeople(List<JournalistInterviewPerson> journalistInterviewPeople) {
+        this.journalistInterviewPeople = journalistInterviewPeople;
+    }
 
     public Long getId() {
         return id;

@@ -1,40 +1,40 @@
 package com.uptc.frw.graphql.controller;
 
 import com.uptc.frw.graphql.jpa.entity.Journalist;
-import com.uptc.frw.graphql.services.JournalistServices;
+import com.uptc.frw.graphql.services.JournalistService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.stereotype.Controller;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/journalist")
+@Controller
 public class JournalistController {
     @Autowired
-    private JournalistServices journalistServices;
-    @GetMapping
-    public List<Journalist> getAllJournalists(){
-        return journalistServices.getAllJournalists();
+    private JournalistService journalistService;
+    @QueryMapping
+    public List<Journalist> allJournalists(){
+        return journalistService.getAllJournalists();
+    }
+    @QueryMapping
+    public Journalist getJournalistById(@Argument("id") int id){
+        return journalistService.getJournalistById(Long.valueOf(id));
     }
 
-    //@PathVariable ayuda a extraer valores de variables de una url /"id"
-    @GetMapping("/{id}")
-    public Journalist getJournalistById(@PathVariable Long id){
-        return journalistServices.getJournalistById(id);
-    }
-    //@RequestBody para vincular el parametro a los datos del cuerpo de la solicitud HTTP
-    @PostMapping
-    public Journalist createJournalist(@RequestBody Journalist journalist){
-        return journalistServices.createJournalist(journalist);
-    }
-    //actualizamos el nombre del periodista
-    @PutMapping("/{id}")
-    public Journalist updateJournalist(@PathVariable Long id, @RequestParam String name){
-            return journalistServices.updateJournalist(id, name);
+    @MutationMapping
+    public Journalist addJournalist(@Argument String name , @Argument String address , @Argument String phone , @Argument int numberNews){
+        return journalistService.addJournalist(name, address, phone, numberNews);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteJournalist(@PathVariable Long id){
-        journalistServices.deleteJournalist(id);
+    @MutationMapping
+    public Journalist updateNameJournalistById(@Argument("id") int id, @Argument String name){
+        return journalistService.updateNameJournalistById(id,name);
+    }
+
+    @MutationMapping
+    public String deleteJournalistById(@Argument("id") int id){
+        return journalistService.deleteJournalistById(id);
     }
 }

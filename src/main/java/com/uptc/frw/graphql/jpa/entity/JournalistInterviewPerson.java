@@ -1,60 +1,65 @@
 package com.uptc.frw.graphql.jpa.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.uptc.frw.graphql.jpa.key.JournalistInterviewPersonKey;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "PERIODISTAS_ENTREVISTA_PERSONA_IMPLICADA")
+@IdClass(JournalistInterviewPersonKey.class)
 public class JournalistInterviewPerson {
     @Id
-    @Column(name = "codigo_periodista")
-    private int codigo_periodista;
-    @Column(name = "codigo_implicado")
-    private int codigo_implicado;
-    @Column(name = "codigo_noticia")
-    private int codigo_noticia;
+    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @JoinColumn(name="CODIGO_PERIODISTA",nullable = false)
+    private Journalist journalist;
+    @Id
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name="CODIGO_IMPLICADO",nullable = false)
+    private PersonInvolved involved;
+    @Id
+    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @JoinColumn(name="CODIGO_NOTICIA",nullable = false)
+    private News news;
 
     public JournalistInterviewPerson() {
     }
 
-    public JournalistInterviewPerson(int codigo_periodista, int codigo_implicado, int codigo_noticia) {
-        this.codigo_periodista = codigo_periodista;
-        this.codigo_implicado = codigo_implicado;
-        this.codigo_noticia = codigo_noticia;
+    public JournalistInterviewPerson(Journalist journalist, PersonInvolved involved, News news) {
+        this.journalist = journalist;
+      //  this.involved = involved;
+        this.news = news;
     }
 
-    public int getCodigo_periodista() {
-        return codigo_periodista;
+    public Journalist getJournalist() {
+        return journalist;
     }
 
-    public void setCodigo_periodista(int codigo_periodista) {
-        this.codigo_periodista = codigo_periodista;
+    public void setJournalist(Journalist journalist) {
+        this.journalist = journalist;
     }
 
-    public int getCodigo_implicado() {
-        return codigo_implicado;
+    public PersonInvolved getInvolved() {
+        return involved;
     }
 
-    public void setCodigo_implicado(int codigo_implicado) {
-        this.codigo_implicado = codigo_implicado;
+    public void setInvolved(PersonInvolved involved) {
+        this.involved = involved;
     }
 
-    public int getCodigo_noticia() {
-        return codigo_noticia;
+    public News getNews() {
+        return news;
     }
 
-    public void setCodigo_noticia(int codigo_noticia) {
-        this.codigo_noticia = codigo_noticia;
+    public void setNews(News news) {
+        this.news = news;
     }
 
     @Override
     public String toString() {
         return "JournalistInterviewPerson{" +
-                "codigo_periodista=" + codigo_periodista +
-                ", codigo_implicado=" + codigo_implicado +
-                ", codigo_noticia=" + codigo_noticia +
+                "codigo_periodista=" + journalist +
+              //  ", codigo_implicado=" +  involved+
+                ", codigo_noticia=" + news +
                 '}';
     }
 }

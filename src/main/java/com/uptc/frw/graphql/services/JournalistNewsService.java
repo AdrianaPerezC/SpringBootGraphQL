@@ -1,17 +1,17 @@
 package com.uptc.frw.graphql.services;
 
 import com.uptc.frw.graphql.jpa.entity.JournalistNews;
-import com.uptc.frw.graphql.jpa.repository.JournalistNewRepository;
+import com.uptc.frw.graphql.jpa.repository.JournalistNewsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class JournalistNewService {
-
+//@Service
+public class JournalistNewsService {
+/*
     @Autowired
-    private JournalistNewRepository journalistNewRepository;
+    private JournalistNewsRepository journalistNewRepository;
 
     public List<JournalistNews> getAllJournalistNew(){
         return  journalistNewRepository.findAll();
@@ -25,5 +25,5 @@ public class JournalistNewService {
         //Consultar eliminar por los 2 parametrosjournalistNewRepository.deleteById();
     }
 
-
+*/
 }

@@ -11,7 +11,7 @@ public class News {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CODIGONOTICIA")
+    @Column(name = "CODIGO_NOTICIA")
     private Long idNew;
     @Column(name = "FECHA")
     private Date dateNew;
@@ -27,17 +27,13 @@ public class News {
 
     /*Se agrega la variable CODIGONOTICIAREFERENCIA
     que se mapea a la clave externa de la misma tabla News*/
-    @ManyToMany
-    @JoinColumn(name = "CODIGONOTICIAREFERENCIA")
-    private List<News> codNewReference;
 
-    @ManyToMany
-    @JoinTable(
-            name = "PERIODISTAS_CUBREN_NOTICIAS",
-            joinColumns = @JoinColumn(name = "codigoNoticia"),
-            inverseJoinColumns = @JoinColumn(name = "codigoPeriodista")
-    )
-    private List<Journalist> journalistList;
+    @OneToMany(mappedBy = "news")
+    private List<JournalistNews> journalistNews;
+    @OneToMany(mappedBy = "news")
+    private List<NewsAgencyNews> newsAgencyNewsList;
+    @OneToMany(mappedBy = "news")
+    private List<JournalistInterviewPerson> journalistInterviewPeople;
 
     public News() {
     }
@@ -47,6 +43,30 @@ public class News {
         this.timeNew = timeNew;
         this.headline = headline;
         this.text = text;
+    }
+
+    public List<NewsAgencyNews> getNewsAgencyNewsList() {
+        return newsAgencyNewsList;
+    }
+
+    public void setNewsAgencyNewsList(List<NewsAgencyNews> newsAgencyNewsList) {
+        this.newsAgencyNewsList = newsAgencyNewsList;
+    }
+
+    public List<JournalistInterviewPerson> getJournalistInterviewPeople() {
+        return journalistInterviewPeople;
+    }
+
+    public void setJournalistInterviewPeople(List<JournalistInterviewPerson> journalistInterviewPeople) {
+        this.journalistInterviewPeople = journalistInterviewPeople;
+    }
+
+    public List<JournalistNews> getJournalistNews() {
+        return journalistNews;
+    }
+
+    public void setJournalistNews(List<JournalistNews> journalistNews) {
+        this.journalistNews = journalistNews;
     }
 
     public Long getIdNew() {

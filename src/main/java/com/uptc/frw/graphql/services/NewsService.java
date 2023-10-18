@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class NewService {
-
+//@Service
+public class NewsService {
+/*
     @Autowired
     private NewsRepository newsRepository;
 
@@ -33,5 +33,5 @@ public class NewService {
 
     public void deleteNews(Long id){
         newsRepository.deleteById(id);
-    }
+    }*/
 }

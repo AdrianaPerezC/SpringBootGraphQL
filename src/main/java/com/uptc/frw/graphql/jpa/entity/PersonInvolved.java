@@ -2,6 +2,8 @@ package com.uptc.frw.graphql.jpa.entity;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
+
 @Entity
 @Table(name="PERSONA_IMPLICADA")
 public class PersonInvolved {
@@ -15,6 +17,8 @@ public class PersonInvolved {
     private Date birthday;
     @Column(name = "CALIDAD_IMPLICADO")
     private String qualityInvolved;
+    @OneToMany(mappedBy = "involved")
+    private List<JournalistInterviewPerson> journalistInterviewPeople;
 
     public PersonInvolved() {
     }
@@ -23,22 +27,6 @@ public class PersonInvolved {
         this.name = name;
         this.birthday = birthday;
         this.qualityInvolved = qualityInvolved;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public Date getBirthday() {
@@ -57,6 +45,30 @@ public class PersonInvolved {
         this.qualityInvolved = qualityInvolved;
     }
 
+    public List<JournalistInterviewPerson> getJournalistInterviewPeople() {
+        return journalistInterviewPeople;
+    }
+
+    public void setJournalistInterviewPeople(List<JournalistInterviewPerson> journalistInterviewPeople) {
+        this.journalistInterviewPeople = journalistInterviewPeople;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "PersonInvolved{" +
@@ -66,6 +78,4 @@ public class PersonInvolved {
                 ", qualityInvolved='" + qualityInvolved + '\'' +
                 '}';
     }
-}
-
 }

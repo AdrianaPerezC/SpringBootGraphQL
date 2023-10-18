@@ -7,43 +7,43 @@ import javax.persistence.*;
 public class JournalistNews {
     @Id
     @ManyToOne
-    @JoinColumn(name = "CODIGOPERIODISTA")
-    private Journalist idJournalist;
+    @JoinColumn(name = "CODIGO_PERIODISTA",nullable = false)
+    private Journalist journalist;
 
     @Id
     @ManyToOne
-    @JoinColumn(name = "CODIGONOTICIA")
-    private News idNew;
+    @JoinColumn(name = "CODIGO_NOTICIA",nullable = false)
+    private News news;
 
     public JournalistNews() {
     }
 
-    public JournalistNews(Journalist idJournalist, News idNew) {
-        this.idJournalist = idJournalist;
-        this.idNew = idNew;
+    public JournalistNews(Journalist idJournalist, News news) {
+        this.journalist = idJournalist;
+        this.news = news;
     }
 
-    public Journalist getIdJournalist() {
-        return idJournalist;
+    public Journalist getJournalist() {
+        return journalist;
     }
 
-    public void setIdJournalist(Journalist idJournalis) {
-        this.idJournalist = idJournalis;
+    public void setJournalist(Journalist journalist) {
+        this.journalist = journalist;
     }
 
-    public News getIdNew() {
-        return idNew;
+    public News getNews() {
+        return news;
     }
 
-    public void setIdNew(News idNew) {
-        this.idNew = idNew;
+    public void setNews(News news) {
+        this.news = news;
     }
 
     @Override
     public String toString() {
         return "JournalistNews{" +
-                "idJournalis=" + idJournalist +
-                ", idNew=" + idNew +
+                "idJournalis=" + journalist +
+                ", idNew=" + news +
                 '}';
     }
 }
