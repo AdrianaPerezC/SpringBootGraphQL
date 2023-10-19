@@ -15,9 +15,9 @@ import java.sql.Date;
 import java.sql.Time;
 import java.util.List;
 
-//@Controller
+@Controller
 public class NewsController {
-  /*  @Autowired
+    @Autowired
     private NewsService newsService;
     @QueryMapping
     public List<News> getAllNews(){
@@ -29,9 +29,14 @@ public class NewsController {
     }
 
     @MutationMapping
-    public News addJournalist(@Argument News news) {
-        return newsService.createNews(news);
+    public News createNews(@Argument String dateNew,@Argument String timeNew,@Argument String headline,@Argument String text) {
+        return newsService.createNews(dateNew,timeNew,headline,text);
     }
+    @MutationMapping
+    public News addNewsReferences(@Argument int id,@Argument int idNewReference){
+        return newsService.addNewsReferences(Long.valueOf(id),Long.valueOf(idNewReference) );
+    }
+
 
     @MutationMapping
     public News updateNewsHeadline(@Argument("id") int id, @Argument String headLine){
@@ -39,8 +44,8 @@ public class NewsController {
     }
 
     @MutationMapping
-    public String deleteJournalistById(@Argument("id") int id){
+    public String deleteNewsById(@Argument("id") int id){
         return newsService.deleteNews(Long.valueOf(id));
-    }*/
+    }
 
 }

@@ -6,15 +6,45 @@ type Journalist{
     phone: String!,
     numberNews: Int
 }
+type News{
+    id:Int,
+    dateNew: String! ,
+    timeNew: String! ,
+    headline: String! ,
+    text: String!,
+    newsReference: News
+}
+
+type NewsAgency{
+    id: Int,
+    name: String,
+    year:Int
+}
 
 type Query{
     allJournalists:[Journalist]
     getJournalistById(id:Int!):Journalist
+
+    getAllNews:[News]
+    getNewsById(id:Int!):News
+
+    getAllNewsAgency:[NewsAgency]
+    getNewsAgencyById(id:Int!):NewsAgency
+
 }
 type Mutation{
     addJournalist(name: String!, address: String!, phone: String!, numberNews: Int) : Journalist
     updateNameJournalistById(id:Int!,name: String!):Journalist
     deleteJournalistById(id:Int!):String
-}
 
+    createNews(dateNew:String!, timeNew:String!, headline:String!, text:String!):News
+    addNewsReferences(id:Int!,idNewReference:Int!):News
+    updateNewsHeadline(id:Int!, headLine:String!):News
+    deleteNewsById(id:Int!):String
+
+    createNewsAgency(name:String!, year:Int!):NewsAgency
+    updateNameNewsAgency(id:Int!,name:String!):NewsAgency
+    deleteNewsAgencyById(id:Int!):String
+
+}
 

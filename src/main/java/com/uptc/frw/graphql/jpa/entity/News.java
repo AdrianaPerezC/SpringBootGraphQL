@@ -29,10 +29,12 @@ public class News {
 
     /*Se agrega la variable CODIGONOTICIAREFERENCIA
     que se mapea a la clave externa de la misma tabla News*/
-    @JsonIgnore
-    @OneToMany
+    @OneToMany(mappedBy="newsReference")
+    private List<News> newsList;
+
+    @ManyToOne
     @JoinColumn(name="CODIGO_NOTICIA_REFERENCIA", referencedColumnName="CODIGO_NOTICIA")
-    private List<News> news;
+    private News newsReference;
 
     @JsonIgnore
     @OneToMany(mappedBy = "news")
@@ -55,13 +57,22 @@ public class News {
         this.text = text;
     }
 
-    public List<News> getNews() {
-        return news;
+    public List<News> getNewsList() {
+        return newsList;
     }
 
-    public void setNews(List<News> news) {
-        this.news = news;
+    public void setNewsList(List<News> newsList) {
+        this.newsList = newsList;
     }
+
+    public News getNewsReference() {
+        return newsReference;
+    }
+
+    public void setNewsReference(News newsReference) {
+        this.newsReference = newsReference;
+    }
+
     public List<JournalistInterviewPerson> getJournalistInterviewPeople() {
         return journalistInterviewPeople;
     }
