@@ -7,23 +7,22 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "PERIODISTAS_ENTREVISTA_PERSONA_IMPLICADA")
-@IdClass(JournalistInterviewPersonKey.class)
 public class JournalistInterviewPerson {
-    @Id
-    @JsonIgnore
-    @ManyToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name="CODIGO_PERIODISTA",nullable = false)
+    @EmbeddedId
+    private  JournalistInterviewPersonKey journalistInterviewPersonKey;
+    @ManyToOne
+    @JoinColumn(name = "CODIGO_PERIODISTA",insertable = false,updatable = false)
     private Journalist journalist;
-    @Id
-    @JsonIgnore
-    @ManyToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name="CODIGO_IMPLICADO",nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "CODIGO_IMPLICADO",insertable = false,updatable = false)
     private PersonInvolved involved;
-    @Id
-    @JsonIgnore
-    @ManyToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name="CODIGO_NOTICIA",nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "CODIGO_NOTICIA",insertable = false,updatable = false)
     private News news;
+
+    public JournalistInterviewPerson(JournalistInterviewPersonKey journalistInterviewPersonKey) {
+        this.journalistInterviewPersonKey = journalistInterviewPersonKey;
+    }
 
     public JournalistInterviewPerson() {
     }
@@ -56,6 +55,14 @@ public class JournalistInterviewPerson {
 
     public void setNews(News news) {
         this.news = news;
+    }
+
+    public JournalistInterviewPersonKey getJournalistInterviewPersonKey() {
+        return journalistInterviewPersonKey;
+    }
+
+    public void setJournalistInterviewPersonKey(JournalistInterviewPersonKey journalistInterviewPersonKey) {
+        this.journalistInterviewPersonKey = journalistInterviewPersonKey;
     }
 
     @Override

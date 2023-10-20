@@ -32,7 +32,7 @@ public class NewsAgencyController {
         return newsAgencyService.updateNameNewsAgency(Long.valueOf(id),name);
     }
     @MutationMapping
-    public String deleteNewsAgencyById(int id){
+    public String deleteNewsAgencyById(@Argument int id){
         return newsAgencyService.deleteNewsAgencyById(Long.valueOf(id));
     }
 }

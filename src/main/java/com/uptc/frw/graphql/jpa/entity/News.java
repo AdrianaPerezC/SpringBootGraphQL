@@ -36,10 +36,9 @@ public class News {
     @JoinColumn(name="CODIGO_NOTICIA_REFERENCIA", referencedColumnName="CODIGO_NOTICIA")
     private News newsReference;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "news")
     private List<JournalistNews> journalistNews;
-    @JsonIgnore
+
     @OneToMany(mappedBy = "news")
     private List<NewsAgencyNews> newsAgencyNewsList;
 

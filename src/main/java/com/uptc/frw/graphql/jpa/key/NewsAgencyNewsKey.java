@@ -3,44 +3,36 @@ package com.uptc.frw.graphql.jpa.key;
 import com.uptc.frw.graphql.jpa.entity.NewsAgency;
 import com.uptc.frw.graphql.jpa.entity.News;
 
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.io.Serializable;
-
+@Embeddable
 public class NewsAgencyNewsKey implements Serializable {
-    private NewsAgency newsAgency;
-    private News news;
+    @Column(name = "CODIGO_AGENCIA_NOTICIAS")
+    private Long newsAgency;
+    @Column(name = "CODIGO_NOTICIA")
+    private Long news;
 
     public NewsAgencyNewsKey() {
     }
 
-    public NewsAgencyNewsKey(NewsAgency newsAgency, News news) {
+    public NewsAgencyNewsKey(Long newsAgency, Long news) {
         this.newsAgency = newsAgency;
         this.news = news;
     }
 
-    public NewsAgency getNewsAgency() {
+    public Long getNewsAgency() {
         return newsAgency;
     }
 
-    public void setNewsAgency(NewsAgency newsAgency) {
+    public void setNewsAgency(Long newsAgency) {
         this.newsAgency = newsAgency;
     }
 
-    public News getNews() {
+    public Long getNews() {
         return news;
     }
 
-    public void setNews(News news) {
+    public void setNews(Long news) {
         this.news = news;
-    }
-
-    @Override
-    public String toString() {
-        return "NewsAgencyNewsKey{" +
-                "newsAgency=" + newsAgency +
-                ", news=" + news +
-                '}';
     }
 }

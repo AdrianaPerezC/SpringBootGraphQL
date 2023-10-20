@@ -5,6 +5,8 @@ type Journalist{
     address: String!,
     phone: String!,
     numberNews: Int
+    journalistInterviewPeople:[JournalistInterviewPerson],
+    journalistNews: [JournalistNews]
 }
 type News{
     id:Int,
@@ -13,17 +15,46 @@ type News{
     headline: String! ,
     text: String!,
     newsReference: News
+    newsAgencyNewsList:[NewsAgencyNews]
+    journalistInterviewPeople:[JournalistInterviewPerson],
+    journalistNews:[JournalistNews]
 }
 
 type NewsAgency{
     id: Int,
     name: String,
     year:Int
+    newsAgencyNewsList:[NewsAgencyNews]
+}
+
+type NewsAgencyNews{
+    hour:String!
+    newsAgency:NewsAgency,
+    news:News
+}
+type PersonInvolved{
+    id:Int,
+    name:String!,
+    birthday:String!,
+    qualityInvolved:String!
+    journalistInterviewPeople:[JournalistInterviewPerson]
+}
+type JournalistInterviewPerson{
+    journalist:Journalist,
+    involved:PersonInvolved
+    news:News
+}
+type JournalistNews{
+    journalist:Journalist,
+    news:News
 }
 
 type Query{
     allJournalists:[Journalist]
     getJournalistById(id:Int!):Journalist
+
+    getAllJournalistNew:[JournalistNews]
+    getJournalistNewsById(idJournalist:Int!,idNew:Int!):JournalistNews
 
     getAllNews:[News]
     getNewsById(id:Int!):News
@@ -31,11 +62,23 @@ type Query{
     getAllNewsAgency:[NewsAgency]
     getNewsAgencyById(id:Int!):NewsAgency
 
+    getAllPersonInvolved:[PersonInvolved]
+    getPersonInvolvedById(id:Int!):PersonInvolved
+
+    getAllJournalistInterviewPerson:[JournalistInterviewPerson]
+    getJournalistInterviewPersonById(idJournalist:Int!,idNew:Int!, idInvolved:Int!):JournalistInterviewPerson
+
+    getAllNewsAgencyNews:[NewsAgencyNews]
+    getNewsAgencyNewsById(idJournalist:Int!,idNew:Int!):NewsAgencyNews
+
 }
 type Mutation{
     addJournalist(name: String!, address: String!, phone: String!, numberNews: Int) : Journalist
     updateNameJournalistById(id:Int!,name: String!):Journalist
     deleteJournalistById(id:Int!):String
+
+    createJournalistNews(idJournalist:Int!,idNew:Int!):JournalistNews
+    deleteJournalistNews(idJournalist:Int!,idNew:Int!):String
 
     createNews(dateNew:String!, timeNew:String!, headline:String!, text:String!):News
     addNewsReferences(id:Int!,idNewReference:Int!):News
@@ -45,6 +88,16 @@ type Mutation{
     createNewsAgency(name:String!, year:Int!):NewsAgency
     updateNameNewsAgency(id:Int!,name:String!):NewsAgency
     deleteNewsAgencyById(id:Int!):String
+
+    createPersonInvolved(name:String!,birthday:String!,qualityInvolved:String!):PersonInvolved
+    updateNamePersonInvolved(id:Int!,name:String!):PersonInvolved
+    deletePersonInvolvedById(id:Int!):String
+
+    createJournalistInterviewPerson(idJournalist:Int!,idNew:Int!,idInvolved:Int!):JournalistInterviewPerson
+    deleteJournalistInterviewPerson(idJournalist:Int!,idNew:Int!,idInvolved:Int!):JournalistInterviewPerson
+
+    createNewsAgencyNews(idnewsAgency:Int!,idNew:Int!,hour:String!):NewsAgencyNews
+    deleteNewsAgencyNews(idJournalist:Int!,idNew:Int):String
 
 }
 

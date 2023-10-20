@@ -8,19 +8,16 @@ import java.sql.Time;
 import java.util.Date;
 @Entity
 @Table(name = "NOTICIA_AGENCIA_NOTICIAS")
-@IdClass(NewsAgencyNewsKey.class)
 public class NewsAgencyNews {
+    @EmbeddedId
+    private NewsAgencyNewsKey newsAgencyNewsKey;
     @Column(name = "HORA")
     private Time hour;
-    @Id
-    @JsonIgnore
-    @ManyToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name="CODIGO_AGENCIA_NOTICIAS",nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "CODIGO_AGENCIA_NOTICIAS",insertable = false,updatable = false)
     private NewsAgency newsAgency;
-    @Id
-    @JsonIgnore
-    @ManyToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name="CODIGO_NOTICIA", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "CODIGO_NOTICIA",insertable = false,updatable = false)
     private News news;
 
     public NewsAgencyNews() {

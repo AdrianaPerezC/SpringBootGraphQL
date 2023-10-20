@@ -10,13 +10,13 @@ import java.util.List;
 @Table(name = "AGENCIA_NOTICIAS")
 public class NewsAgency {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CODIGO_AGENCIA")
     private Long  id;
     @Column(name = "NOMBRE")
     private String name;
     @Column(name = "ANIO_CREACION")
     private int year;
-    @JsonIgnore
     @OneToMany(mappedBy = "newsAgency")
     private List<NewsAgencyNews> newsAgencyNewsList;
 

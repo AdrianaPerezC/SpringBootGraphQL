@@ -4,43 +4,48 @@ import com.uptc.frw.graphql.jpa.entity.Journalist;
 import com.uptc.frw.graphql.jpa.entity.News;
 import com.uptc.frw.graphql.jpa.entity.PersonInvolved;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import java.io.Serializable;
-
+@Embeddable
 public class JournalistInterviewPersonKey implements Serializable {
-    private News news;
-    private PersonInvolved involved;
-    private Journalist journalist;
+    @Column(name = "CODIGO_PERIODISTA")
+    private Long news;
+    @Column(name = "CODIGO_IMPLICADO")
+    private Long involved;
+    @Column(name = "CODIGO_NOTICIA")
+    private Long journalist;
 
     public JournalistInterviewPersonKey() {
     }
 
-    public JournalistInterviewPersonKey(News news, PersonInvolved involved,Journalist journalist) {
+    public JournalistInterviewPersonKey(Long news, Long involved, Long journalist) {
         this.news = news;
         this.involved = involved;
         this.journalist = journalist;
     }
 
-    public News getNews() {
+    public Long getNews() {
         return news;
     }
 
-    public void setNews(News news) {
+    public void setNews(Long news) {
         this.news = news;
     }
 
-    public PersonInvolved getInvolved() {
+    public Long getInvolved() {
         return involved;
     }
 
-    public void setInvolved(PersonInvolved involved) {
+    public void setInvolved(Long involved) {
         this.involved = involved;
     }
 
-    public Journalist getJournalist() {
+    public Long getJournalist() {
         return journalist;
     }
 
-    public void setJournalist(Journalist journalist) {
+    public void setJournalist(Long journalist) {
         this.journalist = journalist;
     }
 }

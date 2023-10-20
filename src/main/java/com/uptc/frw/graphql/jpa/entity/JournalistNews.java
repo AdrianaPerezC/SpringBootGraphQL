@@ -1,32 +1,33 @@
 package com.uptc.frw.graphql.jpa.entity;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.uptc.frw.graphql.jpa.key.JournalistNewsKey;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "PERIODISTAS_CUBREN_NOTICIAS")
-@IdClass(JournalistNewsKey.class)
 public class JournalistNews {
-    @Id
-    @JsonIgnore
-    @ManyToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "CODIGO_PERIODISTA",nullable = false)
+    @EmbeddedId
+    private  JournalistNewsKey journalistNewsKey;
+    @ManyToOne
+    @JoinColumn(name = "CODIGO_PERIODISTA",insertable = false,updatable = false)
     private Journalist journalist;
-
-    @Id
-    @JsonIgnore
-    @ManyToOne(cascade = {CascadeType.ALL})
-    @JoinColumn(name = "CODIGO_NOTICIA",nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "CODIGO_NOTICIA",insertable = false,updatable = false)
     private News news;
 
     public JournalistNews() {
     }
 
-    public JournalistNews(Journalist idJournalist, News news) {
-        this.journalist = idJournalist;
-        this.news = news;
+    public JournalistNews(JournalistNewsKey journalistNewsKey) {
+        this.journalistNewsKey = journalistNewsKey;
+    }
+
+    public JournalistNewsKey getJournalistNewsKey() {
+        return journalistNewsKey;
+    }
+
+    public void setJournalistNewsKey(JournalistNewsKey journalistNewsKey) {
+        this.journalistNewsKey = journalistNewsKey;
     }
 
     public Journalist getJournalist() {
@@ -43,13 +44,5 @@ public class JournalistNews {
 
     public void setNews(News news) {
         this.news = news;
-    }
-
-    @Override
-    public String toString() {
-        return "JournalistNews{" +
-                "idJournalis=" + journalist +
-                ", idNew=" + news +
-                '}';
     }
 }
