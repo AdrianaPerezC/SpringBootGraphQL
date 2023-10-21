@@ -27,7 +27,8 @@ public class NewsAgencyNewsService {
     }
 
     public NewsAgencyNews createNewsAgencyNews(News news, NewsAgency newsAgency, String hour){
-        NewsAgencyNews newsAgencyNews=new NewsAgencyNews( Time.valueOf(hour));
+        NewsAgencyNewsKey newsAgencyNewsKey=new NewsAgencyNewsKey(newsAgency.getId(),news.getId());
+        NewsAgencyNews newsAgencyNews=new NewsAgencyNews(newsAgencyNewsKey,Time.valueOf(hour));
         newsAgencyNews.setNewsAgency(newsAgency);
         newsAgencyNews.setNews(news);
         return newsAgencyNewsRepository.save(newsAgencyNews);

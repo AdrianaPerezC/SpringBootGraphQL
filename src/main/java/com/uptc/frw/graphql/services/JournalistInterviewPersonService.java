@@ -23,7 +23,11 @@ public class JournalistInterviewPersonService {
     }
 
     public JournalistInterviewPerson createJournalistInterviewPerson(Journalist journalist, News news, PersonInvolved personInvolved){
-        JournalistInterviewPerson journalistInterviewPerson=new JournalistInterviewPerson(journalist,personInvolved,news);
+        JournalistInterviewPersonKey journalistInterviewPersonKey=new JournalistInterviewPersonKey(news.getId(), personInvolved.getId(), journalist.getId());
+        JournalistInterviewPerson journalistInterviewPerson=new JournalistInterviewPerson(journalistInterviewPersonKey);
+        journalistInterviewPerson.setJournalist(journalist);
+        journalistInterviewPerson.setNews(news);
+        journalistInterviewPerson.setInvolved(personInvolved);
         return journalistInterviewPersonRepository.save(journalistInterviewPerson);
     }
 

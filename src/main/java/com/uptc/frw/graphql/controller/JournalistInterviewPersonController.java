@@ -43,6 +43,6 @@ public class JournalistInterviewPersonController {
     }
     @MutationMapping
     public String deleteJournalistInterviewPerson(@Argument int idJournalist, @Argument int idNew, @Argument int idInvolved){
-        return journalistInterviewPersonService.deleteJournalistInterviewPerson(Long.valueOf(idJournalist), Long.valueOf(idJournalist), Long.valueOf(idJournalist));
+        return journalistInterviewPersonService.deleteJournalistInterviewPerson(Long.valueOf(idJournalist), Long.valueOf(idNew), Long.valueOf(idInvolved));
     }
 }

@@ -94,7 +94,7 @@ type Mutation{
     deletePersonInvolvedById(id:Int!):String
 
     createJournalistInterviewPerson(idJournalist:Int!,idNew:Int!,idInvolved:Int!):JournalistInterviewPerson
-    deleteJournalistInterviewPerson(idJournalist:Int!,idNew:Int!,idInvolved:Int!):JournalistInterviewPerson
+    deleteJournalistInterviewPerson(idJournalist:Int!,idNew:Int!,idInvolved:Int!):String
 
     createNewsAgencyNews(idnewsAgency:Int!,idNew:Int!,hour:String!):NewsAgencyNews
     deleteNewsAgencyNews(idJournalist:Int!,idNew:Int):String

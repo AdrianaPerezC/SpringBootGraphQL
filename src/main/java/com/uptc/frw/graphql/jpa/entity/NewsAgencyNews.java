@@ -23,6 +23,19 @@ public class NewsAgencyNews {
     public NewsAgencyNews() {
     }
 
+    public NewsAgencyNews(NewsAgencyNewsKey newsAgencyNewsKey, Time hour) {
+        this.newsAgencyNewsKey = newsAgencyNewsKey;
+        this.hour = hour;
+    }
+
+    public NewsAgencyNewsKey getNewsAgencyNewsKey() {
+        return newsAgencyNewsKey;
+    }
+
+    public void setNewsAgencyNewsKey(NewsAgencyNewsKey newsAgencyNewsKey) {
+        this.newsAgencyNewsKey = newsAgencyNewsKey;
+    }
+
     public NewsAgencyNews(Time hour, NewsAgency newsAgency, News news) {
         this.hour = hour;
         this.newsAgency = newsAgency;
